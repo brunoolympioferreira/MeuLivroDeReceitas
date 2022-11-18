@@ -1,6 +1,6 @@
 ﻿namespace MeuLivroDeReceitas.Domain.Entidades
 {
-    public class Usuario
+    public class Usuario : EntidadeBase
     {
         public string Nome { get; set; }
         public string Email { get; set; }
