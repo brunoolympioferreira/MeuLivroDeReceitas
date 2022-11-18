@@ -1,3 +1,6 @@
+using MeuLivroDeReceitas.Api.Filtros;
+using MeuLivroDeReceitas.Application;
+using MeuLivroDeReceitas.Application.Servicos.Automapper;
 using MeuLivroDeReceitas.Domain.Extension;
 using MeuLivroDeReceitas.Infraestructure;
 using MeuLivroDeReceitas.Infraestructure.Migrations;
@@ -9,6 +12,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddRepositorio(builder.Configuration);
+builder.Services.AddApplication(builder.Configuration);
+
+builder.Services.AddMvc(options => options.Filters.Add(typeof(FiltroDasExceptions)));
+
+builder.Services.AddScoped(provider => new AutoMapper.MapperConfiguration(cfg =>
+{
+    cfg.AddProfile(new AutomapperConfiguracao());
+}).CreateMapper());
 
 var app = builder.Build();
 
