@@ -7,6 +7,8 @@ using MeuLivroDeReceitas.Infraestructure.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddRouting(option => option.LowercaseUrls = true);
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
