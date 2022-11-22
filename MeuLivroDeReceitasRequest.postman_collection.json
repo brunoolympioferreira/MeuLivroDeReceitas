@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "ac16e2af-a2f3-4d24-957a-d15ee93063a5",
+		"name": "MeuLivroDeReceitasRequest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21518974"
+	},
+	"item": [
+		{
+			"name": "Registrar Usuario",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//11 9 8706-7011\r",
+							"var ddd = _.random(10,99)\r",
+							"var numeroAdicional = _.random(1,9)\r",
+							"var primeirosDigitos = _.random(1000,9999)\r",
+							"var ultimosQuatroDigitos = _.random(1000,9999)\r",
+							"\r",
+							"var numeroTelefone = ddd + \" \" + numeroAdicional + \" \" + primeirosDigitos + \"-\" + ultimosQuatroDigitos\r",
+							"pm.environment.set(\"numeroTelefone\", numeroTelefone)"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"validar se a requisição foi feita com sucesso\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"    pm.response.to.be.jsonBody;\r",
+							"    pm.response.to.have.jsonBody(\"token\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"{{$randomFullName}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"senha\": \"{{$randomPassword}}\",\r\n  \"telefone\": \"{{numeroTelefone}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBASE}}/usuario",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"usuario"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URLBASE",
+			"value": "https://localhost:7201",
+			"type": "string"
+		}
+	]
+}
