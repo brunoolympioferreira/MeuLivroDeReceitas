@@ -1,6 +1,4 @@
-﻿using MeuLivroDeReceitas.Infrastructure.AcessoRepositorio;
-
-namespace MeuLivroDeReceitas.Infraestructure.AcessoRepositorio;
+﻿namespace MeuLivroDeReceitas.Infraestructure.AcessoRepositorio;
 
 public sealed class UnidadeDeTrabalho : IDisposable, IUnidadeDeTrabalho
 {

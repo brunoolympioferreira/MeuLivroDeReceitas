@@ -1,6 +1,5 @@
 ﻿using MeuLivroDeReceitas.Domain.Entidades;
 using MeuLivroDeReceitas.Domain.Repositorios;
-using MeuLivroDeReceitas.Infrastructure.AcessoRepositorio;
 using Microsoft.EntityFrameworkCore;
 
 namespace MeuLivroDeReceitas.Infraestructure.AcessoRepositorio.Repositorio;

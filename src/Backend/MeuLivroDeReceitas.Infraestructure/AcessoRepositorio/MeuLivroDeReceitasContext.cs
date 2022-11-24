@@ -1,7 +1,7 @@
 ﻿using MeuLivroDeReceitas.Domain.Entidades;
 using Microsoft.EntityFrameworkCore;
 
-namespace MeuLivroDeReceitas.Infrastructure.AcessoRepositorio;
+namespace MeuLivroDeReceitas.Infraestructure.AcessoRepositorio;
 
 public class MeuLivroDeReceitasContext : DbContext
 {
