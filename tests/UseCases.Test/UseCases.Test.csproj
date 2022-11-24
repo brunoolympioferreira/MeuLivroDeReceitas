@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Backend\MeuLivroDeReceitas.Application\MeuLivroDeReceitas.Application.csproj" />
+    <ProjectReference Include="..\..\src\Shared\MeuLivroDeReceitas.Exceptions\MeuLivroDeReceitas.Exceptions.csproj" />
     <ProjectReference Include="..\UtilitarioParaOsTestes\UtilitarioParaOsTestes.csproj" />
   </ItemGroup>
 
