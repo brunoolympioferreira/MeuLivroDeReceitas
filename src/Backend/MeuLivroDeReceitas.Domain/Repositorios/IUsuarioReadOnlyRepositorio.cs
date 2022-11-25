@@ -5,5 +5,5 @@ namespace MeuLivroDeReceitas.Domain.Repositorios;
 public interface IUsuarioReadOnlyRepositorio
 {
     Task<bool> ExisteUsuarioComEmail(string email);
-    Task<Usuario> Login(string email, string senha);
+    Task<Usuario> RecuperarPorEmailESenha(string email, string senha);
 }
