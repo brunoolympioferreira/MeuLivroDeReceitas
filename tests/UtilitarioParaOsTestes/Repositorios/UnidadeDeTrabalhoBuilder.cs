@@ -1,5 +1,4 @@
 ﻿using MeuLivroDeReceitas.Domain.Repositorios;
-using MeuLivroDeReceitas.Infraestructure.AcessoRepositorio;
 using Moq;
 
 namespace UtilitarioParaOsTestes.Repositorios;

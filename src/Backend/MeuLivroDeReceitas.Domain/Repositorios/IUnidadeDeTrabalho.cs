@@ -1,4 +1,4 @@
-﻿namespace MeuLivroDeReceitas.Infraestructure.AcessoRepositorio
+﻿namespace MeuLivroDeReceitas.Domain.Repositorios
 {
     public interface IUnidadeDeTrabalho
     {
