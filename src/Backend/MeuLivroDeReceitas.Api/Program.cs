@@ -11,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRouting(option => option.LowercaseUrls = true);
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -24,6 +26,8 @@ builder.Services.AddScoped(provider => new AutoMapper.MapperConfiguration(cfg =>
 {
     cfg.AddProfile(new AutomapperConfiguracao());
 }).CreateMapper());
+
+builder.Services.AddScoped<UsuarioAutenticadoAttribute>();
 
 var app = builder.Build();
 
