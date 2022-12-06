@@ -110,7 +110,7 @@ public class RegistrarUsuarioValidatorTest
     [InlineData(3)]
     [InlineData(4)]
     [InlineData(5)]
-    public void Validar_Erro_Senha_Invalida(int tamanhoSenha)
+    public void Validar_Erro_Senha_Invalido(int tamanhoSenha)
     {
         var validator = new RegistrarUsuarioValidator();
 

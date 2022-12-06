@@ -17,10 +17,6 @@ public class RegistrarUsuarioValidator : AbstractValidator<RequisicaoRegistrarUs
 		{
 			RuleFor(c => c.Email).EmailAddress().WithMessage(ResourceMensagensDeErro.EMAIL_USUARIO_INVALIDO);
 		});
-        When(c => !string.IsNullOrWhiteSpace(c.Senha), () =>
-        {
-            RuleFor(c => c.Senha.Length).GreaterThanOrEqualTo(6).WithMessage(ResourceMensagensDeErro.SENHA_USUARIO_MINIMO_SEIS_CARACTERES);
-        });
         When(c => !string.IsNullOrWhiteSpace(c.Telefone), () =>
         {
 			RuleFor(c => c.Telefone).Custom((telefone, contexto) => 
