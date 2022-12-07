@@ -1,4 +1,5 @@
 using MeuLivroDeReceitas.Api.Filtros;
+using MeuLivroDeReceitas.Api.Middleware;
 using MeuLivroDeReceitas.Application;
 using MeuLivroDeReceitas.Application.Servicos.Automapper;
 using MeuLivroDeReceitas.Domain.Extension;
@@ -17,7 +18,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddRepositorio(builder.Configuration);
+builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication(builder.Configuration);
 
 builder.Services.AddMvc(options => options.Filters.Add(typeof(FiltroDasExceptions)));
@@ -44,6 +45,8 @@ app.UseAuthorization();
 app.MapControllers();
 
 AtualzarBaseDeDados();
+
+app.UseMiddleware<CultureMiddleware>();
 
 app.Run();
 
