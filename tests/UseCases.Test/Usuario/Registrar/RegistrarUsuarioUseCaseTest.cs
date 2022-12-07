@@ -57,7 +57,7 @@ public class RegistrarUsuarioUseCaseTest
                 exception.MensagensDeErro.Contains(ResourceMensagensDeErro.EMAIL_USUARIO_EMBRANCO));
     }
 
-    private RegistrarUsuarioUseCase CriarUseCase(string email = "")
+    private static RegistrarUsuarioUseCase CriarUseCase(string email = "")
     {
         var mapper = MapperBuilder.Instancia();
         var repositorio = UsuarioWriteOnlyRepositorioBuilder.Instancia().Construir();
