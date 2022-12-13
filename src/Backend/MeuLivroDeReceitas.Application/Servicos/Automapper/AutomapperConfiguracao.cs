@@ -1,14 +1,38 @@
 ﻿using AutoMapper;
+using HashidsNet;
 using MeuLivroDeReceitas.Comunicacao.Requisicoes;
+using MeuLivroDeReceitas.Comunicacao.Respostas;
 using MeuLivroDeReceitas.Domain.Entidades;
 
 namespace MeuLivroDeReceitas.Application.Servicos.Automapper;
 
 public class AutomapperConfiguracao : Profile
 {
-	public AutomapperConfiguracao()
+	private readonly IHashids _hashIds;
+
+    public AutomapperConfiguracao(IHashids hashIds)
 	{
-		CreateMap<RequisicaoRegistrarUsuarioJson, Usuario>()
-			.ForMember(destino => destino.Senha, config => config.Ignore());
-	}
+		_hashIds = hashIds;
+
+		RequisicaoParaEntidade();
+		EntidadeParaResposta();
+    }
+
+	private void RequisicaoParaEntidade()
+	{
+        CreateMap<RequisicaoRegistrarUsuarioJson, Usuario>()
+            .ForMember(destino => destino.Senha, config => config.Ignore());
+
+		CreateMap<RequisicaoRegistrarReceitaJson, Receita>();
+		CreateMap<RequisicaoRegistrarIngredientesJson, Ingrediente>();
+    }
+
+	private void EntidadeParaResposta()
+	{
+		CreateMap<Receita, RespostaReceitaJson>()
+			.ForMember(destino => destino.Id, config => config.MapFrom(origem => _hashIds.EncodeLong(origem.Id)));
+
+        CreateMap<Ingrediente, RespostaIngredienteJson>()
+            .ForMember(destino => destino.Id, config => config.MapFrom(origem => _hashIds.EncodeLong(origem.Id)));
+    }
 }
