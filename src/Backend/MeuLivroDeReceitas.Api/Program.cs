@@ -1,3 +1,4 @@
+using HashidsNet;
 using MeuLivroDeReceitas.Api.Filtros;
 using MeuLivroDeReceitas.Api.Middleware;
 using MeuLivroDeReceitas.Application;
@@ -25,8 +26,13 @@ builder.Services.AddMvc(options => options.Filters.Add(typeof(FiltroDasException
 
 builder.Services.AddScoped(provider => new AutoMapper.MapperConfiguration(cfg =>
 {
-    cfg.AddProfile(new AutomapperConfiguracao());
+    cfg.AddProfile(new AutomapperConfiguracao(provider.GetService<IHashids>()));
 }).CreateMapper());
+
+#region AutoMapper Sem Converter HashId
+//builder.Services.AddAutoMapper(typeof(AutomapperConfiguracao));
+#endregion
+
 
 builder.Services.AddScoped<UsuarioAutenticadoAttribute>();
 
