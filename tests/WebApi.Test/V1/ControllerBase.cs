@@ -19,8 +19,11 @@ public class ControllerBase : IClassFixture<MeuLivroDeReceitaWebApplicationFacto
         ResourceMensagensDeErro.Culture = CultureInfo.CurrentCulture;
     }
 
-    protected async Task<HttpResponseMessage> PostRequest(string metodo, object body)
+    protected async Task<HttpResponseMessage> PostRequest(string metodo, object body, string token = "", string cultura = "")
     {
+        AutorizarRequisicao(token);
+        AlterarCulturaRequisicao(cultura);
+
         var jsonString = JsonConvert.SerializeObject(body);
 
         return await _client.PostAsync(metodo, new StringContent(jsonString, Encoding.UTF8, "application/json"));
@@ -57,6 +60,19 @@ public class ControllerBase : IClassFixture<MeuLivroDeReceitaWebApplicationFacto
         if (!string.IsNullOrWhiteSpace(token))
         {
             _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+        }
+    }
+
+    private void AlterarCulturaRequisicao(string cultura)
+    {
+        if (!string.IsNullOrWhiteSpace(cultura))
+        {
+            if (_client.DefaultRequestHeaders.Contains("Accept-Language"))
+            {
+                _client.DefaultRequestHeaders.Remove("Accept-Language");
+            }
+
+            _client.DefaultRequestHeaders.Add("Accept-Language", cultura);
         }
     }
 }
