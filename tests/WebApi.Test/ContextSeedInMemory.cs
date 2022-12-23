@@ -1,4 +1,5 @@
-﻿using MeuLivroDeReceitas.Infraestructure.AcessoRepositorio;
+﻿using MeuLivroDeReceitas.Domain.Entidades;
+using MeuLivroDeReceitas.Infraestructure.AcessoRepositorio;
 using UtilitarioParaOsTestes.Entidades;
 
 namespace WebApi.Test;
@@ -10,6 +11,42 @@ public class ContextSeedInMemory
         (var usuario, string senha) = UsuarioBuilder.Construir();
 
         context.Usuarios.Add(usuario);
+
+        context.SaveChanges();
+
+        return (usuario, senha);
+    }
+
+    public static (MeuLivroDeReceitas.Domain.Entidades.Usuario usuario, string senha) SeedUsuarioSemReceita(MeuLivroDeReceitasContext context)
+    {
+        (var usuario, string senha) = UsuarioBuilder.ConstruirUsuario2();
+
+        context.Usuarios.Add(usuario);
+
+        context.SaveChanges();
+
+        return (usuario, senha);
+    }
+
+    public static (MeuLivroDeReceitas.Domain.Entidades.Usuario usuario, string senha) SeedUsuarioComConexao(MeuLivroDeReceitasContext context)
+    {
+        (var usuario, string senha) = UsuarioBuilder.ConstruirUsuarioComConexao();
+
+        context.Usuarios.Add(usuario);
+
+        var usuarioConexoes = ConexaoBuilder.Construir();
+
+        for (var index = 1; index <= usuarioConexoes.Count; index++)
+        {
+            var conexaoComUsuario = usuarioConexoes[index - 1];
+
+            context.Conexoes.Add(new Conexao
+            {
+                Id = index,
+                UsuarioId = usuario.Id,
+                ConectadoComUsuario = conexaoComUsuario
+            });
+        }
 
         context.SaveChanges();
 
