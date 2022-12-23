@@ -8,6 +8,30 @@ public class UsuarioBuilder
 {
     public static (Usuario usuario, string senha) Construir()
     {
+        (var usuario, var senha) = CriarUsuario();
+        usuario.Id = 1;
+
+        return (usuario, senha);
+    }
+
+    public static (Usuario usuario, string senha) ConstruirUsuario2()
+    {
+        (var usuario, var senha) = CriarUsuario();
+        usuario.Id = 2;
+
+        return (usuario, senha);
+    }
+
+    public static (Usuario usuario, string senha) ConstruirUsuarioComConexao()
+    {
+        (var usuario, var senha) = CriarUsuario();
+        usuario.Id = 3;
+
+        return (usuario, senha);
+    }
+
+    public static (Usuario usuario, string senha) CriarUsuario()
+    {
         string senha = string.Empty;
 
         var usuarioGerado = new Faker<Usuario>()
