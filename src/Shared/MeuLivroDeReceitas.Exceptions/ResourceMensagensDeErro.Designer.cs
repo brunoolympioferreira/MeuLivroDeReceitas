@@ -178,6 +178,15 @@ namespace MeuLivroDeReceitas.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A receita não foi encontrada..
+        /// </summary>
+        public static string RECEITA_NAO_ENCONTRADA {
+            get {
+                return ResourceManager.GetString("RECEITA_NAO_ENCONTRADA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Senha atual é inválida..
         /// </summary>
         public static string SENHA_ATUAL_INVALIDA {
