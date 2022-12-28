@@ -1,6 +1,8 @@
-﻿using MeuLivroDeReceitas.Exceptions;
+﻿using MeuLivroDeReceitas.Comunicacao.Requisicoes;
+using MeuLivroDeReceitas.Exceptions;
 using Newtonsoft.Json;
 using System.Globalization;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -38,6 +40,22 @@ public class ControllerBase : IClassFixture<MeuLivroDeReceitaWebApplicationFacto
         return await _client.PutAsync(metodo, new StringContent(jsonString, Encoding.UTF8, "application/json"));
     }
 
+    protected async Task<HttpResponseMessage> GetRequest(string metodo, string token = "", string cultura = "")
+    {
+        AutorizarRequisicao(token);
+        AlterarCulturaRequisicao(cultura);
+
+        return await _client.GetAsync(metodo);
+    }
+
+    protected async Task<HttpResponseMessage> DeleteRequest(string metodo, string token = "", string cultura = "")
+    {
+        AutorizarRequisicao(token);
+        AlterarCulturaRequisicao(cultura);
+
+        return await _client.DeleteAsync(metodo);
+    }
+
     protected async Task<string> Login(string email, string senha)
     {
         var requisicao = new MeuLivroDeReceitas.Comunicacao.Requisicoes.RequisicaoLoginJson
@@ -53,6 +71,19 @@ public class ControllerBase : IClassFixture<MeuLivroDeReceitaWebApplicationFacto
         var responseData = await JsonDocument.ParseAsync(respostaBody);
 
         return responseData.RootElement.GetProperty("token").GetString();
+    }
+
+    protected async Task<string> GetReceitaId(string token)
+    {
+        var requisicao = new RequisicaoDashboardJson();
+
+        var resposta = await PutRequest("dashboard", requisicao, token);
+
+        await using var responstaBody = await resposta.Content.ReadAsStreamAsync();
+
+        var responseData = await JsonDocument.ParseAsync(responstaBody);
+
+        return responseData.RootElement.GetProperty("receitas").EnumerateArray().First().GetProperty("id").GetString();
     }
 
     private void AutorizarRequisicao(string token)
