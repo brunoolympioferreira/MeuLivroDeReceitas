@@ -387,6 +387,56 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "RecuperarReceitaPorId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Recuperar receita por id com sucesso\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"    pm.response.to.have.jsonBody(\"id\");\r",
+							"    pm.response.to.have.jsonBody(\"titulo\");\r",
+							"    pm.response.to.have.jsonBody(\"categoria\");\r",
+							"    pm.response.to.have.jsonBody(\"modoPreparo\");\r",
+							"\r",
+							"    let jsonData = pm.response.json()\r",
+							"    pm.expect(jsonData.ingredientes).to.be.an(\"array\")\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/receitas/{{ID_RECEITA}}",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"receitas",
+						"{{ID_RECEITA}}"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
