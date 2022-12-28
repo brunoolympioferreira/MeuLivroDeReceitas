@@ -30,12 +30,12 @@ public class ReceitaReadOnlyRepositorioBuilder
         return this;
     }
 
-    //public ReceitaReadOnlyRepositorioBuilder RecuperarPorId(Receita receita)
-    //{
-    //    _repositorio.Setup(r => r.RecuperarPorId(receita.Id)).ReturnsAsync(receita);
+    public ReceitaReadOnlyRepositorioBuilder RecuperarPorId(Receita receita)
+    {
+        _repositorio.Setup(r => r.RecuperarPorId(receita.Id)).ReturnsAsync(receita);
 
-    //    return this;
-    //}
+        return this;
+    }
 
     //public ReceitaReadOnlyRepositorioBuilder QuantidadeReceitas(int quantidadeReceitas)
     //{
