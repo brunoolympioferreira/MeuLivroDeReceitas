@@ -1,5 +1,6 @@
 ﻿using MeuLivroDeReceitas.Api.Binder;
 using MeuLivroDeReceitas.Api.Filtros;
+using MeuLivroDeReceitas.Application.UseCases.Receita.Atualizar;
 using MeuLivroDeReceitas.Application.UseCases.Receita.RecuperarPorId;
 using MeuLivroDeReceitas.Application.UseCases.Receita.Registrar;
 using MeuLivroDeReceitas.Comunicacao.Requisicoes;
@@ -33,5 +34,18 @@ public class ReceitasController : MeuLivroDeReceitasController
         var resposta = await useCase.Executar(id);
 
         return Ok(resposta);
+    }
+
+    [HttpPut]
+    [Route("{id:hashids}")]
+    [ProducesResponseType(typeof(RespostaReceitaJson), StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> Atualizar(
+    [FromServices] IAtualizarReceitaUseCase useCase,
+    [FromBody] RequisicaoReceitaJson requisicao,
+    [FromRoute][ModelBinder(typeof(HashidsModelBinder))] long id)
+    {
+        await useCase.Executar(id, requisicao);
+
+        return NoContent();
     }
 }
