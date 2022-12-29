@@ -23,8 +23,8 @@ public class AutomapperConfiguracao : Profile
         CreateMap<RequisicaoRegistrarUsuarioJson, Usuario>()
             .ForMember(destino => destino.Senha, config => config.Ignore());
 
-		CreateMap<RequisicaoRegistrarReceitaJson, Receita>();
-		CreateMap<RequisicaoRegistrarIngredientesJson, Ingrediente>();
+		CreateMap<RequisicaoReceitaJson, Receita>();
+		CreateMap<RequisicaoIngredientesJson, Ingrediente>();
     }
 
 	private void EntidadeParaResposta()

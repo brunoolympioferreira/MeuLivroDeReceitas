@@ -4,7 +4,7 @@ using MeuLivroDeReceitas.Domain.Extension;
 using MeuLivroDeReceitas.Exceptions;
 
 namespace MeuLivroDeReceitas.Application.UseCases.Receita;
-public class ReceitaValidator : AbstractValidator<RequisicaoRegistrarReceitaJson>
+public class ReceitaValidator : AbstractValidator<RequisicaoReceitaJson>
 {
     public ReceitaValidator()
     {
