@@ -6,7 +6,7 @@ public class HashidsBuilder
 
     private HashidsBuilder()
     {
-        if (_encripter == null)
+        if (_encripter is null)
             _encripter = new HashidsNet.Hashids("qj328TtMDy", 3);
     }
 
