@@ -34,6 +34,9 @@ public class DashboardUseCase : IDashboardUseCase
 
     private static IList<Domain.Entidades.Receita> Filtrar(RequisicaoDashboardJson requisicao, IList<Domain.Entidades.Receita> receitas)
     {
+        if (receitas is null)
+            return new List<Domain.Entidades.Receita>();
+
         var receitasFiltradas = receitas;
 
         if (requisicao.Categoria.HasValue)
