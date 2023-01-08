@@ -47,7 +47,6 @@ public class MeuLivroDeReceitaWebApplicationFactory<TStartup> : WebApplicationFa
 
                 database.Database.EnsureDeleted();
 
-                //(_usuario, _senha) = ContextSeedInMemory.Seed(database);
                 (_usuarioComReceita, _senhaUsarioComReceita) = ContextSeedInMemory.Seed(database);
                 (_usuarioSemReceita, _senhaUsarioSemReceita) = ContextSeedInMemory.SeedUsuarioSemReceita(database);
                 (_usuarioComConexao, _senhaUsarioComConexao) = ContextSeedInMemory.SeedUsuarioComConexao(database);

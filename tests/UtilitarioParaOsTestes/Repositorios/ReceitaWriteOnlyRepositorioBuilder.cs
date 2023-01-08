@@ -1,7 +1,7 @@
 ﻿using MeuLivroDeReceitas.Domain.Repositorios.Receita;
 using Moq;
 
-namespace UtilitarioParaOsTestes.Requisicoes;
+namespace UtilitarioParaOsTestes.Repositorios;
 public class ReceitaWriteOnlyRepositorioBuilder
 {
     private static ReceitaWriteOnlyRepositorioBuilder _instance;

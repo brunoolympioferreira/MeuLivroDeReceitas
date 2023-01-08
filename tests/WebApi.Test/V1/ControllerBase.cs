@@ -31,9 +31,10 @@ public class ControllerBase : IClassFixture<MeuLivroDeReceitaWebApplicationFacto
         return await _client.PostAsync(metodo, new StringContent(jsonString, Encoding.UTF8, "application/json"));
     }
 
-    protected async Task<HttpResponseMessage> PutRequest(string metodo, object body, string token = "")
+    protected async Task<HttpResponseMessage> PutRequest(string metodo, object body, string token = "", string cultura = "")
     {
         AutorizarRequisicao(token);
+        AlterarCulturaRequisicao(cultura);
 
         var jsonString = JsonConvert.SerializeObject(body);
 
