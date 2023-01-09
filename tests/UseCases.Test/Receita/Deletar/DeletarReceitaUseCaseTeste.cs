@@ -5,7 +5,6 @@ using Xunit;
 using FluentAssertions;
 using MeuLivroDeReceitas.Application.UseCases.Receita.Deletar;
 using UtilitarioParaOsTestes.Repositorios;
-using UtilitarioParaOsTestes.Requisicoes;
 using UtilitarioParaOsTestes.UsuarioLogado;
 using MeuLivroDeReceitas.Exceptions.ExceptionsBase;
 using MeuLivroDeReceitas.Exceptions;
