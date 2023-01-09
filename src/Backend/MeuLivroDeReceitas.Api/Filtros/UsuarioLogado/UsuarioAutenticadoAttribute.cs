@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.IdentityModel.Tokens;
 
-namespace MeuLivroDeReceitas.Api.Filtros;
+namespace MeuLivroDeReceitas.Api.Filtros.UsuarioLogado;
 
 public class UsuarioAutenticadoAttribute : AuthorizeAttribute, IAsyncAuthorizationFilter
 {
@@ -58,7 +58,7 @@ public class UsuarioAutenticadoAttribute : AuthorizeAttribute, IAsyncAuthorizati
 
     private static void TokenExpirado(AuthorizationFilterContext context)
     {
-        context.Result = new UnauthorizedObjectResult( new RespostaErroJson(ResourceMensagensDeErro.TOKEN_EXPIRADO));
+        context.Result = new UnauthorizedObjectResult(new RespostaErroJson(ResourceMensagensDeErro.TOKEN_EXPIRADO));
     }
 
     private static void UsuarioSemPermissao(AuthorizationFilterContext context)

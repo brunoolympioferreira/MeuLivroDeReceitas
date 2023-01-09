@@ -1,13 +1,17 @@
 using HashidsNet;
 using MeuLivroDeReceitas.Api.Filtros;
 using MeuLivroDeReceitas.Api.Filtros.Swagger;
+using MeuLivroDeReceitas.Api.Filtros.UsuarioLogado;
 using MeuLivroDeReceitas.Api.Middleware;
+using MeuLivroDeReceitas.Api.WebSockets;
 using MeuLivroDeReceitas.Application;
 using MeuLivroDeReceitas.Application.Servicos.Automapper;
 using MeuLivroDeReceitas.Domain.Extension;
 using MeuLivroDeReceitas.Infraestructure;
 using MeuLivroDeReceitas.Infraestructure.AcessoRepositorio;
 using MeuLivroDeReceitas.Infraestructure.Migrations;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Builder;
 using System.Net.Mime;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -58,12 +62,18 @@ builder.Services.AddScoped(provider => new AutoMapper.MapperConfiguration(cfg =>
     cfg.AddProfile(new AutomapperConfiguracao(provider.GetService<IHashids>()));
 }).CreateMapper());
 
+builder.Services.AddScoped<IAuthorizationHandler, UsuarioLogadoHandler>();
+builder.Services.AddAuthorization(option =>
+{
+    option.AddPolicy("UsuarioLogado", policy => policy.Requirements.Add(new UsuarioLogadoRequirement()));
+});
+builder.Services.AddScoped<UsuarioAutenticadoAttribute>();
+
 #region AutoMapper Sem Converter HashId
 //builder.Services.AddAutoMapper(typeof(AutomapperConfiguracao));
 #endregion
 
-
-builder.Services.AddScoped<UsuarioAutenticadoAttribute>();
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -82,6 +92,8 @@ app.MapControllers();
 AtualzarBaseDeDados();
 
 app.UseMiddleware<CultureMiddleware>();
+
+app.MapHub<AdicionarConexao>("/addConexao");
 
 app.Run();
 
