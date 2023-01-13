@@ -2,6 +2,7 @@
 using MeuLivroDeReceitas.Domain.Extension;
 using MeuLivroDeReceitas.Domain.Repositorios;
 using MeuLivroDeReceitas.Domain.Repositorios.Codigo;
+using MeuLivroDeReceitas.Domain.Repositorios.Conexao;
 using MeuLivroDeReceitas.Domain.Repositorios.Receita;
 using MeuLivroDeReceitas.Domain.Repositorios.Usuario;
 using MeuLivroDeReceitas.Infraestructure.AcessoRepositorio;
@@ -54,7 +55,9 @@ public static class Bootstrapper
             .AddScoped<IReceitaWriteOnlyRepositorio, ReceitaRepositorio>()
             .AddScoped<IReceitaReadOnlyRepositorio, ReceitaRepositorio>()
             .AddScoped<IReceitaUpdateOnlyRepositorio, ReceitaRepositorio>()
-            .AddScoped<ICodigoWriteOnlyRepositorio, CodigoRepositorio>();
+            .AddScoped<ICodigoWriteOnlyRepositorio, CodigoRepositorio>()
+            .AddScoped<ICodigoReadOnlyRepositorio, CodigoRepositorio>()
+            .AddScoped<IConexaoReadOnlyRepositorio, ConexaoRepositorio>();
     }
 
     private static void AddFluentMigrator(IServiceCollection services, IConfiguration configurationManager)
