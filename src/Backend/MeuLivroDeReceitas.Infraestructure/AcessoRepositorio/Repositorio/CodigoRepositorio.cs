@@ -11,6 +11,16 @@ public class CodigoRepositorio : ICodigoWriteOnlyRepositorio, ICodigoReadOnlyRep
         _contexto = contexto;
     }
 
+    public async Task Deletar(long usuarioId)
+    {
+        var codigos = await _contexto.Codigos.Where(c => c.UsuarioId == usuarioId).ToListAsync();
+
+        if (codigos.Any())
+        {
+            _contexto.Codigos.RemoveRange(codigos);
+        }
+    }
+
     public async Task<Codigos> RecuperarEntidadeCodigo(string codigo)
     {
         return await _contexto.Codigos.AsNoTracking()

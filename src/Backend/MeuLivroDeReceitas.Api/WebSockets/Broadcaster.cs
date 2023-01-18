@@ -1,4 +1,5 @@
-﻿using MeuLivroDeReceitas.Exceptions.ExceptionsBase;
+﻿using MeuLivroDeReceitas.Exceptions;
+using MeuLivroDeReceitas.Exceptions.ExceptionsBase;
 using Microsoft.AspNetCore.SignalR;
 using System.Collections.Concurrent;
 
@@ -40,5 +41,42 @@ public class Broadcaster
         }
 
         return connectionId.ToString();
+    }
+
+    public void ResetarTempoExpiracao(string connectionId)
+    {
+        _dictionary.TryGetValue(connectionId, out var objetoConexao);
+
+        var conexao = objetoConexao as Conexao;
+
+        conexao.ResetarContagemTempo();
+    }
+
+    public void SetConnectionIdUsuarioLeitorQRCode(string idUsuarioQueGerouQRCode, string connectionIdUsarioLeitorQRCode)
+    {
+        var connectionIdUsuarioQueLeuQRCode = GetConnectionIdDoUsuario(idUsuarioQueGerouQRCode);
+
+        _dictionary.TryGetValue(connectionIdUsuarioQueLeuQRCode, out var objetoConexao);
+
+        var conexao = objetoConexao as Conexao;
+
+        conexao.SetConnectionIdUsuarioLeitorQRCode(connectionIdUsarioLeitorQRCode);
+    }
+
+    public string Remover(string connectionId, string usuarioId)
+    {
+        if (!_dictionary.TryGetValue(connectionId, out var objetoConexao))
+        {
+            throw new MeuLivroDeReceitasException("");
+        }
+
+        var conexao = objetoConexao as Conexao;
+
+        conexao.StopTimer();
+
+        _dictionary.TryRemove(connectionId, out _);
+        _dictionary.TryRemove(usuarioId, out _);
+
+        return conexao.UsuarioQueLeuQRCode();
     }
 }
