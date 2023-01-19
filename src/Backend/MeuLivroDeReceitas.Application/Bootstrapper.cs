@@ -1,6 +1,10 @@
 ﻿using MeuLivroDeReceitas.Application.Servicos.Criptografia;
 using MeuLivroDeReceitas.Application.Servicos.Token;
 using MeuLivroDeReceitas.Application.Servicos.UsuarioLogado;
+using MeuLivroDeReceitas.Application.UseCases.Conexao.AceitarConexao;
+using MeuLivroDeReceitas.Application.UseCases.Conexao.GerarQRCode;
+using MeuLivroDeReceitas.Application.UseCases.Conexao.QRCodeLido;
+using MeuLivroDeReceitas.Application.UseCases.Conexao.RecusarConexao;
 using MeuLivroDeReceitas.Application.UseCases.Dashboard;
 using MeuLivroDeReceitas.Application.UseCases.Receita.Atualizar;
 using MeuLivroDeReceitas.Application.UseCases.Receita.Deletar;
@@ -59,7 +63,8 @@ public static class Bootstrapper
 
     private static void AdicionarUseCases(IServiceCollection services)
     {
-        services.AddScoped<IRegistrarUsuarioUseCase, RegistrarUsuarioUseCase>()
+        services
+            .AddScoped<IRegistrarUsuarioUseCase, RegistrarUsuarioUseCase>()
             .AddScoped<ILoginUseCase, LoginUseCase>()
             .AddScoped<IAlterarSenhaUseCase, AlterarSenhaUseCase>()
             .AddScoped<IRegistrarReceitaUseCase, RegistrarReceitaUseCase>()
@@ -67,6 +72,10 @@ public static class Bootstrapper
             .AddScoped<IRecuperarReceitaPorIdUseCase, RecuperarReceitaPorIdUseCase>()
             .AddScoped<IAtualizarReceitaUseCase, AtualizarReceitaUseCase>()
             .AddScoped<IDeletarReceitaUseCase, DeletarReceitaUseCase>()
-            .AddScoped<IRecuperarPerfilUseCase, RecuperarPerfilUseCase>();
+            .AddScoped<IRecuperarPerfilUseCase, RecuperarPerfilUseCase>()
+            .AddScoped<IGerarQRCodeUseCase, GerarQRCodeUseCase>()
+            .AddScoped<IQRCodeLidoUseCase, QRCodeLidoUseCase>()
+            .AddScoped<IRecusarConexaoUseCase, RecusarConexaoUseCase>()
+            .AddScoped<IAceitarConexaoUseCase, AceitarConexaoUseCase>();
     }
 }
