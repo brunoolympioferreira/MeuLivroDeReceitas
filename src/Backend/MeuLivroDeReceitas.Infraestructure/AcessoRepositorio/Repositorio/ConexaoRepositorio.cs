@@ -3,7 +3,7 @@ using MeuLivroDeReceitas.Domain.Repositorios.Conexao;
 using Microsoft.EntityFrameworkCore;
 
 namespace MeuLivroDeReceitas.Infraestructure.AcessoRepositorio.Repositorio;
-public class ConexaoRepositorio : IConexaoReadOnlyRepositorio
+public class ConexaoRepositorio : IConexaoReadOnlyRepositorio, IConexaoWriteOnlyRepositorio
 {
     private readonly MeuLivroDeReceitasContext _contexto;
     public ConexaoRepositorio(MeuLivroDeReceitasContext contexto)
@@ -22,5 +22,10 @@ public class ConexaoRepositorio : IConexaoReadOnlyRepositorio
         .Where(c => c.UsuarioId == usuarioId)
         .Select(c => c.ConectadoComUsuario)
         .ToListAsync();
+    }
+
+    public async Task Registrar(Conexao conexao)
+    {
+        await _contexto.Conexoes.AddAsync(conexao);
     }
 }

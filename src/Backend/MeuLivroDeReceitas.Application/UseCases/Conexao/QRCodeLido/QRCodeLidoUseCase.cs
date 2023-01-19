@@ -33,6 +33,7 @@ public class QRCodeLidoUseCase : IQRCodeLidoUseCase
 
         var usuarioParaSeConectar = new RespostaUsuarioConexaoJson
         {
+            Id = _hashids.EncodeLong(usuarioLogado.Id),
             Nome = usuarioLogado.Nome
         };
 
