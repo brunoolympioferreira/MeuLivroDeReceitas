@@ -61,15 +61,6 @@ namespace MeuLivroDeReceitas.Exceptions {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string _string {
-            get {
-                return ResourceManager.GetString("string", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to A categoria da receita é inválida..
         /// </summary>
         public static string CATEGORIA_RECEITA_INVALIDA {
@@ -264,6 +255,15 @@ namespace MeuLivroDeReceitas.Exceptions {
         public static string TOKEN_EXPIRADO {
             get {
                 return ResourceManager.GetString("TOKEN_EXPIRADO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuário não encontrado.
+        /// </summary>
+        public static string USUARIO_NAO_ENCONTRADO {
+            get {
+                return ResourceManager.GetString("USUARIO_NAO_ENCONTRADO", resourceCulture);
             }
         }
         
