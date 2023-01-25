@@ -171,9 +171,6 @@
   <data name="SENHA_USUARIO_MINIMO_SEIS_CARACTERES" xml:space="preserve">
     <value>A senha deve conter no mínimo 6 caracteres</value>
   </data>
-  <data name="string" xml:space="preserve">
-    <value />
-  </data>
   <data name="TELEFONE_USUARIO_EMBRANCO" xml:space="preserve">
     <value>O telefone do usuário deve ser informado.</value>
   </data>
@@ -185,6 +182,9 @@
   </data>
   <data name="TOKEN_EXPIRADO" xml:space="preserve">
     <value>Faça login novamente no APP.</value>
+  </data>
+  <data name="USUARIO_NAO_ENCONTRADO" xml:space="preserve">
+    <value>Usuário não encontrado</value>
   </data>
   <data name="USUARIO_SEM_PERMISSAO" xml:space="preserve">
     <value>Você não tem permissão para acessar esse recurso.</value>

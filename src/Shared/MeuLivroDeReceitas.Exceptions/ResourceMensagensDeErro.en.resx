@@ -186,6 +186,9 @@
   <data name="USUARIO_SEM_PERMISSAO" xml:space="preserve">
     <value>You're not allowed to access this feature</value>
   </data>
+  <data name="Usuário não encontrado" xml:space="preserve">
+    <value>User not found</value>
+  </data>
   <data name="VOCE_NAO_PODE_EXECUTAR_ESTA_OPERACAO" xml:space="preserve">
     <value>You cannot perform this operation.</value>
   </data>

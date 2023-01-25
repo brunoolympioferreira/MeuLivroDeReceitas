@@ -37,7 +37,7 @@ public class Broadcaster
     {
         if (!_dictionary.TryGetValue(usuarioId, out var connectionId))
         {
-            throw new MeuLivroDeReceitasException("");
+            throw new MeuLivroDeReceitasException(ResourceMensagensDeErro.USUARIO_NAO_ENCONTRADO);
         }
 
         return connectionId.ToString();
