@@ -6,18 +6,20 @@ namespace WebApi.Test;
 
 public class ContextSeedInMemory
 {
-    public static (MeuLivroDeReceitas.Domain.Entidades.Usuario usuario, string senha) Seed(MeuLivroDeReceitasContext context)
+    public static (Usuario usuario, string senha) Seed(MeuLivroDeReceitasContext context)
     {
         (var usuario, string senha) = UsuarioBuilder.Construir();
+        var receita = ReceitaBuilder.Construir(usuario);
 
         context.Usuarios.Add(usuario);
+        context.Receitas.Add(receita);
 
         context.SaveChanges();
 
         return (usuario, senha);
     }
 
-    public static (MeuLivroDeReceitas.Domain.Entidades.Usuario usuario, string senha) SeedUsuarioSemReceita(MeuLivroDeReceitasContext context)
+    public static (Usuario usuario, string senha) SeedUsuarioSemReceita(MeuLivroDeReceitasContext context)
     {
         (var usuario, string senha) = UsuarioBuilder.ConstruirUsuario2();
 
@@ -28,7 +30,7 @@ public class ContextSeedInMemory
         return (usuario, senha);
     }
 
-    public static (MeuLivroDeReceitas.Domain.Entidades.Usuario usuario, string senha) SeedUsuarioComConexao(MeuLivroDeReceitasContext context)
+    public static (Usuario usuario, string senha) SeedUsuarioComConexao(MeuLivroDeReceitasContext context)
     {
         (var usuario, string senha) = UsuarioBuilder.ConstruirUsuarioComConexao();
 

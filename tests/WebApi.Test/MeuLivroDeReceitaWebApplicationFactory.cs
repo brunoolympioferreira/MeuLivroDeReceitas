@@ -18,8 +18,6 @@ public class MeuLivroDeReceitaWebApplicationFactory<TStartup> : WebApplicationFa
     private MeuLivroDeReceitas.Domain.Entidades.Usuario _usuarioComConexao;
     private string _senhaUsarioComConexao;
 
-    //private MeuLivroDeReceitas.Domain.Entidades.Usuario _usuario;
-    //private string _senha;
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("Test")
@@ -71,5 +69,15 @@ public class MeuLivroDeReceitaWebApplicationFactory<TStartup> : WebApplicationFa
     public string RecuperarSenhaUsuarioSemReceita()
     {
         return _senhaUsarioSemReceita;
+    }
+
+    public MeuLivroDeReceitas.Domain.Entidades.Usuario RecuperarUsuarioComConexao()
+    {
+        return _usuarioComConexao;
+    }
+
+    public string RecuperarSenhaUsuarioComConexao()
+    {
+        return _senhaUsarioComConexao;
     }
 }

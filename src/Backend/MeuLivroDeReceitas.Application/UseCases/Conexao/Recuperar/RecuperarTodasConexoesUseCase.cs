@@ -22,7 +22,7 @@ public class RecuperarTodasConexoesUseCase : IRecuperarTodasConexoesUseCase
         _mapper = mapper;
         _repositorioReceitas = repositorioReceitas;
     }
-    public async Task<IList<RespostaUsuarioConectadoJson>> Executar()
+    public async Task<RespostaConexoesDoUsuarioJson> Executar()
     {
         var usuarioLogado = await _usuarioLogado.RecuperarUsuario();
 
@@ -38,6 +38,9 @@ public class RecuperarTodasConexoesUseCase : IRecuperarTodasConexoesUseCase
             return usuarioJson;
         });
 
-        return await Task.WhenAll(tarefas);
+        return new RespostaConexoesDoUsuarioJson
+        {
+            Usuarios = await Task.WhenAll(tarefas)
+        };
     }
 }
