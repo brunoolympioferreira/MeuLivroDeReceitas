@@ -76,8 +76,8 @@ public class RecuperarReceitaPorIdUseCaseTeste
         var usuarioLogado = UsuarioLogadoBuilder.Instancia().RecuperarUsuario(usuario).Construir();
         var mapper = MapperBuilder.Instancia();
         var repositorioRead = ReceitaReadOnlyRepositorioBuilder.Instancia().RecuperarPorId(receita).Construir();
-        //var repositorioConexao = ConexaoReadOnlyRepositorioBuilder.Instancia().RecuperarDoUsuario(usuario, usuariosConectados).Construir();
+        var repositorioConexao = ConexaoReadOnlyRepositorioBuilder.Instancia().RecuperarDoUsuario(usuario, usuariosConectados).Construir();
 
-        return new RecuperarReceitaPorIdUseCase(repositorioRead, usuarioLogado, mapper);
+        return new RecuperarReceitaPorIdUseCase(repositorioRead, usuarioLogado, mapper, repositorioConexao);
     }
 }
