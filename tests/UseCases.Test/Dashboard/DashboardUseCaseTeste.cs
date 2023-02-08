@@ -105,6 +105,6 @@ public class DashboardUseCaseTeste
         var repositorioRead = ReceitaReadOnlyRepositorioBuilder.Instancia().RecuperarTodasDoUsuario(receita).Construir();
         var repositorioConexao = ConexaoReadOnlyRepositorioBuilder.Instancia().RecuperarDoUsuario(usuario, usuariosConectados).Construir();
 
-        return new DashboardUseCase(repositorioRead, usuarioLogado, mapper);
+        return new DashboardUseCase(repositorioRead, usuarioLogado, mapper, repositorioConexao);
     }
 }
