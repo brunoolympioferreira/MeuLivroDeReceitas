@@ -23,5 +23,14 @@ namespace MeuLivroDeReceitas.Api.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> RemoverConexao([FromServices] IRecuperarTodasConexoesUseCase useCase)
+        {
+            await useCase.Executar();
+
+            return NoContent();
+        }
     }
 }
