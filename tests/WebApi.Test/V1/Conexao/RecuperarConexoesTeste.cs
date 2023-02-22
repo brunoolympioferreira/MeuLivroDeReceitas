@@ -15,7 +15,7 @@ public class RecuperarConexoesTeste : ControllerBase
     private MeuLivroDeReceitas.Domain.Entidades.Usuario _usuarioComConexao;
     private string _senhaUsuarioComConexao;
 
-    public RecuperarConexoesTeste(MeuLivroDeReceitaWebApplicationFactory<Program> factory) : base(factory)
+    public RecuperarConexoesTeste(MeuLivroReceitaWebApplicationFactory<Program> factory) : base(factory)
     {
         _usuarioSemConexao = factory.RecuperarUsuario();
         _senhaUsuarioSemConexao = factory.RecuperarSenha();

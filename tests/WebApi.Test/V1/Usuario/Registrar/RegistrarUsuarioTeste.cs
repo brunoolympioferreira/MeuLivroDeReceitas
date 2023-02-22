@@ -12,7 +12,7 @@ namespace WebApi.Test.V1.Usuario.Registrar;
 public class RegistrarUsuarioTeste : ControllerBase
 {
     private const string METODO = "usuario";
-    public RegistrarUsuarioTeste(MeuLivroDeReceitaWebApplicationFactory<Program> factory) : base(factory) { }
+    public RegistrarUsuarioTeste(MeuLivroReceitaWebApplicationFactory<Program> factory) : base(factory) { }
 
     [Fact]
     public async Task Validar_Sucesso()

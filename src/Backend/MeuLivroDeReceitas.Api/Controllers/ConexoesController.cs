@@ -1,5 +1,7 @@
+using MeuLivroDeReceitas.Api.Binder;
 using MeuLivroDeReceitas.Api.Filtros.UsuarioLogado;
 using MeuLivroDeReceitas.Application.UseCases.Conexao.Recuperar;
+using MeuLivroDeReceitas.Application.UseCases.Conexao.Remover;
 using MeuLivroDeReceitas.Comunicacao.Respostas;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +11,9 @@ namespace MeuLivroDeReceitas.Api.Controllers
     public class ConexoesController : MeuLivroDeReceitasController
     {
         [HttpGet]
-        [ProducesResponseType(typeof(IList<RespostaConexoesDoUsuarioJson>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(RespostaConexoesDoUsuarioJson), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> RecuperarConexoes(
-            [FromServices] IRecuperarTodasConexoesUseCase useCase)
+        public async Task<IActionResult> RecuperarConexoes([FromServices] IRecuperarTodasConexoesUseCase useCase)
         {
             var resultado = await useCase.Executar();
 
@@ -25,10 +26,13 @@ namespace MeuLivroDeReceitas.Api.Controllers
         }
 
         [HttpDelete]
+        [Route("{id:hashids}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> RemoverConexao([FromServices] IRecuperarTodasConexoesUseCase useCase)
+        public async Task<IActionResult> Deletar(
+            [FromServices] IRemoverConexaoUseCase useCase,
+            [FromRoute][ModelBinder(typeof(HashidsModelBinder))] long id)
         {
-            await useCase.Executar();
+            await useCase.Executar(id);
 
             return NoContent();
         }

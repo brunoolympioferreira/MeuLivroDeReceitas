@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace WebApi.Test;
 
-public class MeuLivroDeReceitaWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
+public class MeuLivroReceitaWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
 {
     private MeuLivroDeReceitas.Domain.Entidades.Usuario _usuarioComReceita;
     private string _senhaUsarioComReceita;

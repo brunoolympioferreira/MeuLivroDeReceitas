@@ -11,10 +11,9 @@ namespace MeuLivroDeReceitas.Api.Controllers
         [HttpPut]
         [ProducesResponseType(typeof(RespostaDashboardJson), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        //[ServiceFilter(typeof(UsuarioAutenticadoAttribute))]
         public async Task<IActionResult> RecuperarDashboard(
-            [FromServices] IDashboardUseCase useCase,
-            [FromBody] RequisicaoDashboardJson request)
+                    [FromServices] IDashboardUseCase useCase,
+                    [FromBody] RequisicaoDashboardJson request)
         {
             var resultado = await useCase.Executar(request);
 

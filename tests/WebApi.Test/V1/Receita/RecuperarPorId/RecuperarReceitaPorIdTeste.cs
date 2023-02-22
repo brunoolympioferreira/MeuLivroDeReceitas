@@ -18,7 +18,7 @@ public class RecuperarReceitaPorIdTeste : ControllerBase
     private MeuLivroDeReceitas.Domain.Entidades.Usuario _usuario;
     private string _senha;
 
-    public RecuperarReceitaPorIdTeste(MeuLivroDeReceitaWebApplicationFactory<Program> factory) : base(factory)
+    public RecuperarReceitaPorIdTeste(MeuLivroReceitaWebApplicationFactory<Program> factory) : base(factory)
     {
         _usuario = factory.RecuperarUsuario();
         _senha = factory.RecuperarSenha();
