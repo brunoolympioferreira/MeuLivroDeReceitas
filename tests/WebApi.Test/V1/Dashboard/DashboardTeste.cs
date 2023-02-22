@@ -19,7 +19,7 @@ public class DashboardTeste : ControllerBase
 
     private MeuLivroDeReceitas.Domain.Entidades.Usuario _usuarioSemReceita;
     private string _senhaUsuarioSemReceita;
-    public DashboardTeste(MeuLivroDeReceitaWebApplicationFactory<Program> factory) : base(factory)
+    public DashboardTeste(MeuLivroReceitaWebApplicationFactory<Program> factory) : base(factory)
     {
         _usuarioComReceita = factory.RecuperarUsuario();
         _senhaUsuarioComReceita = factory.RecuperarSenha();

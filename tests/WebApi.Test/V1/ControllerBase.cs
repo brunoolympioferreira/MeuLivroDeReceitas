@@ -11,14 +11,13 @@ using Xunit;
 
 namespace WebApi.Test.V1;
 
-public class ControllerBase : IClassFixture<MeuLivroDeReceitaWebApplicationFactory<Program>>
+public class ControllerBase : IClassFixture<MeuLivroReceitaWebApplicationFactory<Program>>
 {
     private readonly HttpClient _client;
 
-    public ControllerBase(MeuLivroDeReceitaWebApplicationFactory<Program> factory)
+    public ControllerBase(MeuLivroReceitaWebApplicationFactory<Program> factory)
     {
         _client = factory.CreateClient();
-        ResourceMensagensDeErro.Culture = CultureInfo.CurrentCulture;
     }
 
     protected async Task<HttpResponseMessage> PostRequest(string metodo, object body, string token = "", string cultura = "")
@@ -59,7 +58,7 @@ public class ControllerBase : IClassFixture<MeuLivroDeReceitaWebApplicationFacto
 
     protected async Task<string> Login(string email, string senha)
     {
-        var requisicao = new MeuLivroDeReceitas.Comunicacao.Requisicoes.RequisicaoLoginJson
+        var requisicao = new RequisicaoLoginJson
         {
             Email = email,
             Senha = senha
@@ -89,7 +88,7 @@ public class ControllerBase : IClassFixture<MeuLivroDeReceitaWebApplicationFacto
 
     private void AutorizarRequisicao(string token)
     {
-        if (!string.IsNullOrWhiteSpace(token))
+        if (!string.IsNullOrWhiteSpace(token) && !_client.DefaultRequestHeaders.Contains("Authorization"))
         {
             _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
         }

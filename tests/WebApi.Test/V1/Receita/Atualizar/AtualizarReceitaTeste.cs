@@ -15,7 +15,7 @@ public class AtualizarReceitaTeste : ControllerBase
     private MeuLivroDeReceitas.Domain.Entidades.Usuario _usuario;
     private string _senha;
 
-    public AtualizarReceitaTeste(MeuLivroDeReceitaWebApplicationFactory<Program> factory) : base(factory)
+    public AtualizarReceitaTeste(MeuLivroReceitaWebApplicationFactory<Program> factory) : base(factory)
     {
         _usuario = factory.RecuperarUsuario();
         _senha = factory.RecuperarSenha();
