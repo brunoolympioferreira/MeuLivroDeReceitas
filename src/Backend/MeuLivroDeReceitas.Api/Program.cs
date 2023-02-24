@@ -11,10 +11,8 @@ using MeuLivroDeReceitas.Infraestructure;
 using MeuLivroDeReceitas.Infraestructure.AcessoRepositorio;
 using MeuLivroDeReceitas.Infraestructure.Migrations;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using System.Net.Mime;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,7 +47,7 @@ builder.Services.AddSwaggerGen(option =>
                     Id = "Bearer"
                 }
             },
-            new string[] {}
+            Array.Empty<string>()
         }
     });
 });

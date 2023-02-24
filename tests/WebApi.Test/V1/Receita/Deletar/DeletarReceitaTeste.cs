@@ -1,10 +1,6 @@
 ﻿using FluentAssertions;
 using MeuLivroDeReceitas.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using UtilitarioParaOsTestes.Hashids;
@@ -53,7 +49,7 @@ public class DeletarReceitaTeste : ControllerBase
 
     [Theory]
     [InlineData("pt")]
-    //[InlineData("en")]
+    [InlineData("en")]
     public async Task Validar_Erro_Receita_Inexistente(string cultura)
     {
         var token = await Login(_usuario.Email, _senha);
