@@ -9,7 +9,7 @@ namespace UtilitarioParaOsTestes.Repositorios
         private readonly Mock<IUsuarioUpdateOnlyRepositorio> _repositorio;
         private UsuarioUpdateOnlyRepositorioBuilder()
         {
-            if (_repositorio == null)
+            if (_repositorio is null)
             {
                 _repositorio = new Mock<IUsuarioUpdateOnlyRepositorio>();
             }

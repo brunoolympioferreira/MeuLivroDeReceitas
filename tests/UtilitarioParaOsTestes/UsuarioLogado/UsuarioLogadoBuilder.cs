@@ -9,7 +9,7 @@ public class UsuarioLogadoBuilder
     private readonly Mock<IUsuarioLogado> _repositorio;
     private UsuarioLogadoBuilder()
     {
-        if (_repositorio == null)
+        if (_repositorio is null)
         {
             _repositorio = new Mock<IUsuarioLogado>();
         }

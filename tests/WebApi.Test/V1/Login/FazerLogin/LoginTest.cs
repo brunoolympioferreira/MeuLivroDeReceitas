@@ -12,7 +12,7 @@ public class LoginTest : ControllerBase
 
     private MeuLivroDeReceitas.Domain.Entidades.Usuario _usuario;
     private string _senha;
-    public LoginTest(MeuLivroDeReceitaWebApplicationFactory<Program> factory) : base(factory)
+    public LoginTest(MeuLivroReceitaWebApplicationFactory<Program> factory) : base(factory)
     {
         _usuario = factory.RecuperarUsuario();
         _senha = factory.RecuperarSenha();

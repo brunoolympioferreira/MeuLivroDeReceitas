@@ -1,6 +1,9 @@
 ﻿using FluentMigrator.Runner;
 using MeuLivroDeReceitas.Domain.Extension;
 using MeuLivroDeReceitas.Domain.Repositorios;
+using MeuLivroDeReceitas.Domain.Repositorios.Codigo;
+using MeuLivroDeReceitas.Domain.Repositorios.Conexao;
+using MeuLivroDeReceitas.Domain.Repositorios.Receita;
 using MeuLivroDeReceitas.Domain.Repositorios.Usuario;
 using MeuLivroDeReceitas.Infraestructure.AcessoRepositorio;
 using MeuLivroDeReceitas.Infraestructure.AcessoRepositorio.Repositorio;
@@ -48,7 +51,14 @@ public static class Bootstrapper
     {
         services.AddScoped<IUsuarioWriteOnlyRepositorio, UsuarioRepositorio>()
             .AddScoped<IUsuarioReadOnlyRepositorio, UsuarioRepositorio>()
-            .AddScoped<IUsuarioUpdateOnlyRepositorio, UsuarioRepositorio>();
+            .AddScoped<IUsuarioUpdateOnlyRepositorio, UsuarioRepositorio>()
+            .AddScoped<IReceitaWriteOnlyRepositorio, ReceitaRepositorio>()
+            .AddScoped<IReceitaReadOnlyRepositorio, ReceitaRepositorio>()
+            .AddScoped<IReceitaUpdateOnlyRepositorio, ReceitaRepositorio>()
+            .AddScoped<ICodigoWriteOnlyRepositorio, CodigoRepositorio>()
+            .AddScoped<ICodigoReadOnlyRepositorio, CodigoRepositorio>()
+            .AddScoped<IConexaoReadOnlyRepositorio, ConexaoRepositorio>()
+            .AddScoped<IConexaoWriteOnlyRepositorio, ConexaoRepositorio>();
     }
 
     private static void AddFluentMigrator(IServiceCollection services, IConfiguration configurationManager)
