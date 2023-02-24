@@ -30,7 +30,7 @@ public class RecuperarReceitaPorIdUseCase : IRecuperarReceitaPorIdUseCase
 
         var receita = await _repositorio.RecuperarPorId(id);
 
-        Validar(usuarioLogado, receita);
+        await Validar(usuarioLogado, receita);
 
         return _mapper.Map<RespostaReceitaJson>(receita);
     }

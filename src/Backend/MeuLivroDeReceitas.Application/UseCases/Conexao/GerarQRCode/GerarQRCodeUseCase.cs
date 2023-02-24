@@ -20,23 +20,6 @@ public class GerarQRCodeUseCase : IGerarQRCodeUseCase
         _hashIds = hashIds;
     }
 
-    //public async Task<(string qrCode, string idUsuario)> Executar()
-    //{
-    //    var usuarioLogado = await _usuarioLogado.RecuperarUsuario();
-
-    //    var codigo = new Domain.Entidades.Codigos
-    //    {
-    //        Codigo = Guid.NewGuid().ToString(),
-    //        UsuarioId = usuarioLogado.Id
-    //    };
-
-    //    await _repositorio.Registrar(codigo);
-
-    //    await _unidadeDeTrabalho.Commit();
-
-    //    return (codigo.Codigo, _hashids.EncodeLong(usuarioLogado.Id));
-    //}
-
     public async Task<(byte[] qrCode, string idUsuario)> Executar()
     {
         var usuarioLogado = await _usuarioLogado.RecuperarUsuario();
@@ -56,17 +39,16 @@ public class GerarQRCodeUseCase : IGerarQRCodeUseCase
 
     private static byte[] GerarImagemQRCode(string codigo)
     {
-        //var qrCodeGerator = new QRCodeGenerator();
+        var qrCodeGerator = new QRCodeGenerator();
 
-        //var qrCodeData = qrCodeGerator.CreateQrCode(codigo, QRCodeGenerator.ECCLevel.Q);
+        var qrCodeData = qrCodeGerator.CreateQrCode(codigo, QRCodeGenerator.ECCLevel.Q);
 
-        //var qrCode = new QRCode(qrCodeData);
+        var qrCode = new QRCode(qrCodeData);
 
-        //var bitmap = qrCode.GetGraphic(5, Color.Black, Color.Transparent, true);
+        var bitmap = qrCode.GetGraphic(5, Color.Black, Color.Transparent, true);
 
-        //using var stream = new MemoryStream();
-        //bitmap.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
-        //return stream.ToArray();
-        return default;
+        using var stream = new MemoryStream();
+        bitmap.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+        return stream.ToArray();
     }
 }
